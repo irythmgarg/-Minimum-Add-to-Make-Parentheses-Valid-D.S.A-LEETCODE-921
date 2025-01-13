@@ -1,0 +1,49 @@
+// THEORY:
+// This problem revolves around validating parentheses in a string. 
+// A string is considered valid if:
+// 1. Every opening parenthesis '(' has a matching closing parenthesis ')'.
+// 2. Parentheses are closed in the correct order.
+// The challenge here is to determine the minimum number of parentheses 
+// (either '(' or ')') that need to be added to make the string valid.
+
+// PROBLEM STATEMENT:
+// Given a string `s` consisting of only '(' and ')', return the minimum number of parentheses
+// needed to make the string valid.
+
+// SOLUTION:
+// - Use two counters:
+//   1. `open`: Tracks the number of unmatched '(' encountered so far.
+//   2. `ans`: Tracks the number of unmatched ')' encountered so far.
+// - Traverse the string character by character:
+//   - If the current character is '(':
+//     - Increment the `open` counter to indicate an unmatched opening parenthesis.
+//   - If the current character is ')':
+//     - Check if there is an unmatched '(' available (`open > 0`):
+//       - If yes, decrement `open` to match this ')' with an existing '('.
+//       - If no, increment `ans` to indicate an unmatched closing parenthesis.
+// - At the end of traversal, any remaining unmatched '(' (`open`) are added to `ans`
+//   since they will require corresponding ')' to make the string valid.
+// - The final result is the sum of `ans` (unmatched ')') and `open` (unmatched '(').
+
+// TIME COMPLEXITY:
+// O(n) - The algorithm traverses the string `s` once, where `n` is the length of the string.
+// Each operation inside the loop (incrementing or decrementing counters) is O(1).
+
+// SPACE COMPLEXITY:
+// O(1) - The algorithm uses only two integer variables (`open` and `ans`) regardless of the input size.
+
+// EXAMPLES:
+// Example 1:
+// Input: s = "())"
+// Process:
+// - '(' -> Increment `open`: open = 1
+// - ')' -> Decrement `open`: open = 0 (matched)
+// - ')' -> Increment `ans`: ans = 1 (unmatched)
+// Output: ans + open = 1 + 0 = 1
+
+// Example 2:
+// Input: s = "((("
+// Process:
+// - '(' -> Increment `open`: open = 1
+// - '(' -> Increment `open`: open = 2
+// - '(' -> Increment `
